@@ -33,3 +33,5 @@
 /.vs/TxLibrary/v16
 /.vs
 /TxLibrary/obj/Debug
+/TestTree/bin/Debug
+/TestTree/obj/Debug

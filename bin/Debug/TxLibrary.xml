@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TxLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:TxLibrary.DataStructure.Tree.TxTree">
+            <summary>
+            树型结构
+            </summary>
+        </member>
+        <member name="P:TxLibrary.DataStructure.Tree.TxTree.Value">
+            <summary>
+            节点数据
+            </summary>
+        </member>
+        <member name="F:TxLibrary.DataStructure.Tree.TxTree.Father">
+            <summary>
+            父节点
+            </summary>
+        </member>
+        <member name="F:TxLibrary.DataStructure.Tree.TxTree.Childs">
+            <summary>
+            子节点
+            </summary>
+        </member>
+        <member name="M:TxLibrary.DataStructure.Tree.TxTree.#ctor(System.Object)">
+            <summary>
+            创建一个节点
+            </summary>
+            <param name="_value">节点数据</param>
+        </member>
+        <member name="P:TxLibrary.DataStructure.Tree.TxTree.GetChilds">
+            <summary>
+            获取子节点列表
+            </summary>
+        </member>
+        <member name="P:TxLibrary.DataStructure.Tree.TxTree.GetFather">
+            <summary>
+            获取父节点
+            </summary>
+        </member>
+        <member name="P:TxLibrary.DataStructure.Tree.TxTree.IsRoot">
+            <summary>
+            判断当前节点是否为根节点
+            </summary>
+        </member>
+        <member name="M:TxLibrary.DataStructure.Tree.TxTree.Add(System.Object)">
+            <summary>
+            添加节点
+            </summary>
+            <param name="child">子节点数据</param>
+        </member>
+        <member name="M:TxLibrary.DataStructure.Tree.TxTree.Add(TxLibrary.DataStructure.Tree.TxTree)">
+            <summary>
+            添加节点
+            新节点添加到Childs，并重置新节点的父亲为本节点
+            </summary>
+            <param name="tree">子节点</param>
+        </member>
+        <member name="M:TxLibrary.DataStructure.Tree.TxTree.Remove">
+            <summary>
+            移除当前节点
+            将当前节点的所有子节点添加到父节点，并将所有子节点的父节点重置
+            将本节点从父节点中移除
+            </summary>
+        </member>
+        <member name="M:TxLibrary.DataStructure.Tree.TxTree.ToTreeViewItem(TxLibrary.DataStructure.Tree.TxTree)">
+            <summary>
+            转换到WPF框架的TreeViewItem类型
+            </summary>
+            <param name="tree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.DataStructure.Tree.TxTree.ToTreeNode(TxLibrary.DataStructure.Tree.TxTree)">
+            <summary>
+            转换到WinFrom框架的TreeNode类型
+            </summary>
+            <param name="tree"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
