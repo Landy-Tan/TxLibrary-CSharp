@@ -4,6 +4,405 @@
         <name>TxLibrary</name>
     </assembly>
     <members>
+        <member name="T:TxLibrary.Log.CLog">
+            <summary>
+            CLog.xaml 的交互逻辑
+            </summary>
+            <summary>
+            CLog
+            </summary>
+        </member>
+        <member name="T:TxLibrary.Log.CLog.CInfo">
+            <summary>
+            日志信息
+            </summary>
+        </member>
+        <member name="T:TxLibrary.Log.CLog.CInfo.emType">
+            <summary>
+            日志类型
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.CInfo.emType.Info">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.CInfo.emType.Warning">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.CInfo.emType.Error">
+            <summary>
+            错误
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.time">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.type">
+            <summary>
+            日志类型
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.threadID">
+            <summary>
+            线程ID
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.file">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.line">
+            <summary>
+            行号
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.function">
+            <summary>
+            函数
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.errID">
+            <summary>
+            错误ID
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.description">
+            <summary>
+            描述信息
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.CInfo.#ctor">
+            <summary>
+            构造一条空的记录
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.CInfo.#ctor(TxLibrary.Log.CLog.CInfo.emType,System.Int32,System.String)">
+            <summary>
+            构造一条带数据的记录
+            </summary>
+            <param name="type"></param>
+            <param name="errID"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.CInfo.ToString">
+            <summary>
+            转换成字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.CInfo.Time">
+            <summary>
+            获取记录时间
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog._instance">
+            <summary>
+            实例对象
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.Instance">
+            <summary>
+            获取/插件实例对象
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.Release">
+            <summary>
+            释放对象
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.View">
+            <summary>
+            视图
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.Logs">
+            <summary>
+            日志记录集合
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.IsClose">
+            <summary>
+            控制写Log线程的执行
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Log.CLog.thread">
+            <summary>
+            线程
+            将日志记录写入文件
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.lockWirteLogs">
+            <summary>
+            记录集合锁
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Log.CLog.wirteLogs">
+            <summary>
+            记录集合
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.WriteThread">
+            <summary>
+            写文件线程方法
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.Add(TxLibrary.Log.CLog.CInfo)">
+            <summary>
+            添加一条记录
+            内部使用，不对外公开
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.Info(System.String)">
+            <summary>
+            添加一条记录信息
+            </summary>
+            <param name="description"></param>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.Warning(System.Int32,System.String)">
+            <summary>
+            添加一条警告信息
+            </summary>
+            <param name="errID"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.Error(System.Int32,System.String)">
+            <summary>
+            添加一条错误信息
+            </summary>
+            <param name="errID"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:TxLibrary.Log.CLog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:TxLibrary.Config.Page.ButtonPage">
+            <summary>
+            以分栏的方式分页
+            </summary>
+            <summary>
+            ButtonPage
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Page.ButtonPage.#ctor">
+            <summary>
+            创建对象
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Page.ButtonPage.AddControl(System.String,System.Windows.FrameworkElement)">
+            <summary>
+            添加控件
+            </summary>
+            <param name="name"></param>
+            <param name="ctl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Page.ButtonPage.LoadWindow">
+            <summary>
+            加载窗口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Page.ButtonPage.onButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            按钮被单击处理方法
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TxLibrary.Config.Page.ButtonPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:TxLibrary.Config.Page.IPage">
+            <summary>
+            分页接口
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Page.IPage.AddControl(System.String,System.Windows.FrameworkElement)">
+            <summary>
+            添加控件
+            </summary>
+            <param name="name"></param>
+            <param name="ctl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.Config.Page.NotPage">
+            <summary>
+            不分页
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Page.NotPage.#ctor">
+            <summary>
+            创建对象
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Page.NotPage.AddControl(System.String,System.Windows.FrameworkElement)">
+            <summary>
+            添加控件
+            </summary>
+            <param name="name"></param>
+            <param name="ctl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.Config.Page.TablePage">
+            <summary>
+            以Table页的方式分页
+            </summary>
+            <summary>
+            TablePage
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Page.TablePage.#ctor">
+            <summary>
+            创建对象
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Page.TablePage.AddControl(System.String,System.Windows.FrameworkElement)">
+            <summary>
+            添加控件
+            </summary>
+            <param name="name"></param>
+            <param name="ctl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Page.TablePage.LoadWindow">
+            <summary>
+            加载窗口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Page.TablePage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:TxLibrary.Config.ISetting">
+            <summary>
+            参数基类
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.GetControl(TxLibrary.Config.Page.IPage,System.Boolean,System.Action{System.Object,System.Object},System.Int32,System.Int32,System.Windows.HorizontalAlignment,System.Int32,System.Int32)">
+            <summary>
+            创建一个控件，该控件与此类的公共属性绑定
+            </summary>
+            <param name="page">分页方式</param>
+            <param name="DescriptionBox">true：当鼠标进入相关参数区域时显示其描述信息</param>
+            <param name="ValueChanged">值更改事件</param>
+            <param name="Width">控件的宽度</param>
+            <param name="Height">控件的高度</param>
+            <param name="LabelCtrlTextAlign">参数名称对齐方式</param>
+            <param name="LabelCtrlWidth">参数名称宽度</param>
+            <param name="ValueCtrlWidth">编辑框宽度</param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.CreateEnumComboBox(System.Reflection.PropertyInfo)">
+            <summary>
+            创建枚举类型的ComboBox控件
+            </summary>
+            <param name="propertie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.CreateBoolComboBox(System.Reflection.PropertyInfo)">
+            <summary>
+            创建Bool类型的ComboBox控件
+            </summary>
+            <param name="propertie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.CreateNumberTextBox(System.Reflection.PropertyInfo)">
+            <summary>
+            创建数值类型的编辑框控件
+            </summary>
+            <param name="propertie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.CreateStringTextBox(System.Reflection.PropertyInfo)">
+            <summary>
+            创建字符串类型的编辑框控件
+            </summary>
+            <param name="propertie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.EnumComboBox_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            枚举类型的ComboBox控件选中的项被更改
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.BoolComboBox_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            boo类型的ComboBox控件选中的项被更改
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.NumberTextBox_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            数值类型的编辑框控件的值被更改
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TxLibrary.Config.ISetting.StringTextBox_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            字符串类型的编辑框控件的值被更改
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:TxLibrary.Config.API">
+            <summary>
+            获取鼠标所在位置
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.API.GetCursorPos(TxLibrary.Config.API.POINT@)">
+            <summary>
+            获取鼠标当前所在位置
+            </summary>
+            <param name="pt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.DesignMode.Single`1">
+            <summary>
+            单例模板类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:TxLibrary.DesignMode.Single`1.GetInstance">
+            <summary>
+            获取对象实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.DesignMode.Single`1.GetInstance(System.String,System.String)">
+            <summary>
+            获取对象实例
+            </summary>
+            <param name="className">类名（包括名称空间）</param>
+            <param name="assemblyPath">程序集名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.DesignMode.Single`1.Release">
+            <summary>
+            释放对象实例
+            </summary>
+        </member>
         <member name="T:TxLibrary.DataStructure.Tree.TxTree">
             <summary>
             树型结构
@@ -78,6 +477,127 @@
             </summary>
             <param name="tree"></param>
             <returns></returns>
+        </member>
+        <member name="T:TxLibrary.Threads.TxICommandTask">
+            <summary>
+            任务接口
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Threads.TxICommandTask.Run">
+            <summary>
+            任务处理过程
+            </summary>
+        </member>
+        <member name="T:TxLibrary.Threads.TxCommandTask">
+            <summary>
+            通用任务
+            </summary>
+        </member>
+        <member name="P:TxLibrary.Threads.TxCommandTask.actTask">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Threads.TxCommandTask.#ctor(System.Action)">
+            <summary>
+            创建一个Action任务
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:TxLibrary.Threads.TxCommandTask.Run">
+            <summary>
+            任务过程
+            </summary>
+        </member>
+        <member name="T:TxLibrary.Threads.TxTaskThreads">
+            <summary>
+            多任务线程池
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Threads.TxTaskThreads.nThreadNumber">
+            <summary>
+            线程数量
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Threads.TxTaskThreads.Threads">
+            <summary>
+            线程
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Threads.TxTaskThreads.bAbort">
+            <summary>
+            停止线程
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Threads.TxTaskThreads.mtxTasks">
+            <summary>
+            任务锁
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Threads.TxTaskThreads.Tasks">
+            <summary>
+            任务集合
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Threads.TxTaskThreads.#ctor">
+            <summary>
+            创建线程池
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Threads.TxTaskThreads.Init(System.Int32)">
+            <summary>
+            初始化
+            </summary>
+            <param name="threadNumber">线程数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Threads.TxTaskThreads.Uninit">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Threads.TxTaskThreads.AppendTask(TxLibrary.Threads.TxICommandTask)">
+            <summary>
+            添加一个任务
+            </summary>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Threads.TxTaskThreads.Process">
+            <summary>
+            线程池执行过程
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
