@@ -6,6 +6,7 @@
  * History
  * <Date>           <Author>    <Description>
  * 2020年10月19日   Landy        创建
+ * 2020年10月21日   Landy        兼容C# 7.0
  */
 
 using System;
@@ -21,12 +22,12 @@ namespace TxLibrary.DataStructure.Tree
         /// <summary>
         /// 节点数据
         /// </summary>
-        public object Value { get; set; } = default;
+        public object Value { get; set; } = null;
 
         /// <summary>
         /// 父节点
         /// </summary>
-        protected TxTree Father = default;
+        protected TxTree Father = null;
 
         /// <summary>
         /// 子节点
@@ -37,7 +38,7 @@ namespace TxLibrary.DataStructure.Tree
         /// 创建一个节点
         /// </summary>
         /// <param name="_value">节点数据</param>
-        public TxTree(object _value = default)
+        public TxTree(object _value = null)
         {
             Value = _value;
         }

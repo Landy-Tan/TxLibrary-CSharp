@@ -569,34 +569,60 @@
             线程池执行过程
             </summary>
         </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+        <member name="T:TxLibrary.Notification.NotificationHandler">
             <summary>
-            GeneratedInternalTypeHelper
+            通知
+            </summary>
+            <param name="notification"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:TxLibrary.Notification.TxNotification">
+            <summary>
+            通知机制
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+        <member name="E:TxLibrary.Notification.TxNotification.NotificationEvent">
             <summary>
-            CreateInstance
+            接收通知的事件
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+        <member name="P:TxLibrary.Notification.TxNotification.Instance">
             <summary>
-            GetPropertyValue
+            单例设计模式，返回自身
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+        <member name="M:TxLibrary.Notification.TxNotification.SendNotification(TxLibrary.Notification.TxNotification.Notification,System.Object[])">
             <summary>
-            SetPropertyValue
+            同步发送通知
+            </summary>
+            <param name="notification"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:TxLibrary.Notification.TxNotification.SendAsyncNotification(TxLibrary.Notification.TxNotification.Notification,System.Object[])">
+            <summary>
+            异步发送通知
+            </summary>
+            <param name="notification"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:TxLibrary.Notification.TxNotification.Notification">
+            <summary>
+            通知类型
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+        <member name="F:TxLibrary.Notification.TxNotification.Notification.Initialize">
             <summary>
-            CreateDelegate
+            初始化
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+        <member name="F:TxLibrary.Notification.TxNotification.Notification.Open">
             <summary>
-            AddEventHandler
+            打开
+            </summary>
+        </member>
+        <member name="F:TxLibrary.Notification.TxNotification.Notification.Close">
+            <summary>
+            关闭
             </summary>
         </member>
     </members>

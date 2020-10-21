@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSetting", "TestSetting\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLog", "TestLog\TestLog.csproj", "{11C60218-5E9C-4D91-AE4A-EC932D714D11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNotification", "TestNotification\TestNotification.csproj", "{351C0272-19DE-4F35-B377-E8ECBEA736DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{11C60218-5E9C-4D91-AE4A-EC932D714D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11C60218-5E9C-4D91-AE4A-EC932D714D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11C60218-5E9C-4D91-AE4A-EC932D714D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{351C0272-19DE-4F35-B377-E8ECBEA736DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351C0272-19DE-4F35-B377-E8ECBEA736DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351C0272-19DE-4F35-B377-E8ECBEA736DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351C0272-19DE-4F35-B377-E8ECBEA736DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{83397A93-8216-4C05-B416-22B97DDF005B} = {98D7BADB-D695-49D1-AA75-B47CB875FA1E}
 		{9DEF1661-173A-446B-9838-77E9232D78A6} = {98D7BADB-D695-49D1-AA75-B47CB875FA1E}
 		{11C60218-5E9C-4D91-AE4A-EC932D714D11} = {98D7BADB-D695-49D1-AA75-B47CB875FA1E}
+		{351C0272-19DE-4F35-B377-E8ECBEA736DE} = {98D7BADB-D695-49D1-AA75-B47CB875FA1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94DA85C0-29E1-4C06-8C93-ECAAA44A8E7D}
