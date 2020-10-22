@@ -378,6 +378,47 @@
             <param name="pt"></param>
             <returns></returns>
         </member>
+        <member name="T:TxLibrary.Config.Memory.BinarySerializeMemory`1">
+            <summary>
+            二进制序列化存储
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Memory.BinarySerializeMemory`1.Load(System.String)">
+            <summary>
+            加载参数
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Memory.BinarySerializeMemory`1.Save(System.String,`0)">
+            <summary>
+            保存参数
+            </summary>
+            <param name="file"></param>
+            <param name="value"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.Config.Memory.IMemory`1">
+            <summary>
+            存储接口
+            </summary>
+        </member>
+        <member name="M:TxLibrary.Config.Memory.IMemory`1.Save(System.String,`0)">
+            <summary>
+            保存
+            </summary>
+            <param name="file"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Memory.IMemory`1.Load(System.String)">
+            <summary>
+            加载
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="T:TxLibrary.DesignMode.Single`1">
             <summary>
             单例模板类

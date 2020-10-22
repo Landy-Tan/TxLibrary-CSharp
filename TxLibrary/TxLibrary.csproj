@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -55,6 +59,9 @@
     <Compile Include="参数设置\ISetting.cs" />
     <Compile Include="参数设置\分页\NotPage.cs" />
     <Compile Include="参数设置\分页\TablePage.xaml.cs" />
+    <Compile Include="参数设置\存储\BinarySerializeMemory.cs" />
+    <Compile Include="参数设置\存储\IMemory.cs" />
+    <Compile Include="参数设置\存储\JsonMemory.cs" />
     <Compile Include="设计模式\Single.cs" />
     <Compile Include="数据结构\树形结构\TxTree.cs" />
     <Compile Include="线程\TxTaskThreads.cs" />

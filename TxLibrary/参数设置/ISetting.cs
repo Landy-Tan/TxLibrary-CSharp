@@ -9,6 +9,7 @@
  * 2020年9月1日     txl         label.Text值改为从CLanguage获取
  * 2020年9月7日     txl         迁移到WPF（未完成）
  * 2020年9月10日    txl         迁移到WPF已完成并已测试，描述编辑控件已优化
+ * 2020年10月22日   landy       更改为抽象基类
  **********************************************************************/
 using Microsoft.Win32;
 using System;
@@ -18,7 +19,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-//using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace TxLibrary.Config
@@ -28,7 +28,7 @@ namespace TxLibrary.Config
     /// 参数基类
     /// </summary>
     [Serializable()]
-    public /*abstract*/ class ISetting// : ISerializable
+    public abstract class ISetting
     {
         [NonSerialized]
         private List<Control> Ctrl = null;
