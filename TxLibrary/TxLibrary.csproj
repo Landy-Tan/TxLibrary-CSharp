@@ -59,9 +59,11 @@
     <Compile Include="参数设置\ISetting.cs" />
     <Compile Include="参数设置\分页\NotPage.cs" />
     <Compile Include="参数设置\分页\TablePage.xaml.cs" />
-    <Compile Include="参数设置\存储\BinarySerializeMemory.cs" />
-    <Compile Include="参数设置\存储\IMemory.cs" />
-    <Compile Include="参数设置\存储\JsonMemory.cs" />
+    <Compile Include="参数设置\序列化\BinarySerialize.cs" />
+    <Compile Include="参数设置\序列化\ISerialize.cs" />
+    <Compile Include="参数设置\序列化\JsonSerialize.cs" />
+    <Compile Include="参数设置\序列化\UserDefaultSerialize.cs" />
+    <Compile Include="参数设置\序列化\XmlSerialize.cs" />
     <Compile Include="设计模式\Single.cs" />
     <Compile Include="数据结构\树形结构\TxTree.cs" />
     <Compile Include="线程\TxTaskThreads.cs" />

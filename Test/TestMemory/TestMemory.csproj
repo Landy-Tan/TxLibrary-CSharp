@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TxLibrary\TxLibrary.csproj">
+    <ProjectReference Include="..\..\TxLibrary\TxLibrary.csproj">
       <Project>{d1acc391-210c-4a3e-b959-00861ac0cd60}</Project>
       <Name>TxLibrary</Name>
     </ProjectReference>

@@ -378,19 +378,20 @@
             <param name="pt"></param>
             <returns></returns>
         </member>
-        <member name="T:TxLibrary.Config.Memory.BinarySerializeMemory`1">
+        <member name="T:TxLibrary.Config.Serialize.BinarySerialize`1">
             <summary>
             二进制序列化存储
+            注意：此序列化方法需要被序列化类显示声明SerializableAttribute
             </summary>
         </member>
-        <member name="M:TxLibrary.Config.Memory.BinarySerializeMemory`1.Load(System.String)">
+        <member name="M:TxLibrary.Config.Serialize.BinarySerialize`1.Load(System.String)">
             <summary>
             加载参数
             </summary>
             <param name="file"></param>
             <returns></returns>
         </member>
-        <member name="M:TxLibrary.Config.Memory.BinarySerializeMemory`1.Save(System.String,`0)">
+        <member name="M:TxLibrary.Config.Serialize.BinarySerialize`1.Save(System.String,`0)">
             <summary>
             保存参数
             </summary>
@@ -399,24 +400,67 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="T:TxLibrary.Config.Memory.IMemory`1">
+        <member name="T:TxLibrary.Config.Serialize.ISerialize`1">
             <summary>
-            存储接口
+            参数存储接口
             </summary>
         </member>
-        <member name="M:TxLibrary.Config.Memory.IMemory`1.Save(System.String,`0)">
+        <member name="M:TxLibrary.Config.Serialize.ISerialize`1.Save(System.String,`0)">
             <summary>
-            保存
+            保存参数
             </summary>
             <param name="file"></param>
-            <param name="obj"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:TxLibrary.Config.Memory.IMemory`1.Load(System.String)">
+        <member name="M:TxLibrary.Config.Serialize.ISerialize`1.Load(System.String)">
             <summary>
-            加载
+            加载参数
             </summary>
             <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.Config.Serialize.JsonSerialize`1">
+            <summary>
+            以Json格式存储
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:TxLibrary.Config.Serialize.JsonSerialize`1.Load(System.String)">
+            <summary>
+            加载参数
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Serialize.JsonSerialize`1.Save(System.String,`0)">
+            <summary>
+            保存参数
+            </summary>
+            <param name="file"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.Config.Serialize.XmlSerialize`1">
+            <summary>
+            以XML格式存储
+            注意：要存储的对象访问权限必须为public
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:TxLibrary.Config.Serialize.XmlSerialize`1.Load(System.String)">
+            <summary>
+            加载参数
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.Config.Serialize.XmlSerialize`1.Save(System.String,`0)">
+            <summary>
+            保存参数
+            </summary>
+            <param name="file"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="T:TxLibrary.DesignMode.Single`1">
@@ -664,6 +708,36 @@
         <member name="F:TxLibrary.Notification.TxNotification.Notification.Close">
             <summary>
             关闭
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

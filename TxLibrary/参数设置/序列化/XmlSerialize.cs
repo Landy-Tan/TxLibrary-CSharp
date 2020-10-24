@@ -1,24 +1,25 @@
 ﻿/**********************************************************************
- * File name:		JsonMemory.cs
+ * File name:		XmlMemory.cs
  * Author:			landy
- * Create date:		2020年10月22日
- * Description:		Json格式序列化存储方式
+ * Create date:		2020年10月23日
+ * Description:		XML格式序列化存储方式
  * History:			
  * <Date>			<Author>	<Description>
- * 2020年10月22日   landy       实现Save/Load方法
+ * 2020年10月23日   landy       实现Save/Load方法
+ * 2020年10月23日   landy       重命名为XmlSerialize，原命名为XmlMemory
  **********************************************************************/
 
 using System;
 using System.IO;
-using Newtonsoft.Json;
 
-namespace TxLibrary.Config.Memory
+namespace TxLibrary.Config.Serialize
 {
     /// <summary>
-    /// 以Json格式存储
+    /// 以XML格式存储
+    /// 注意：要存储的对象访问权限必须为public
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class JsonMemory<T> : IMemory<T> where T : new()
+    public class XmlSerialize<T> : ISerialize<T>
     {
         /// <summary>
         /// 加载参数
@@ -30,9 +31,12 @@ namespace TxLibrary.Config.Memory
             try
             {
                 if (!File.Exists(file)) throw new Exception("File not exist.");
-                string content = File.ReadAllText(file) ?? throw new ArgumentNullException(nameof(content));
-                return JsonConvert.DeserializeObject<T>(content);
-            }catch(Exception e)
+                using (var stream = new StreamReader(file))
+                {
+                    return (T)new System.Xml.Serialization.XmlSerializer(typeof(T)).Deserialize(stream);
+                }
+            }
+            catch (Exception e)
             {
                 return default;
             }
@@ -48,10 +52,13 @@ namespace TxLibrary.Config.Memory
         {
             try
             {
-                string content = JsonConvert.SerializeObject(value, Formatting.Indented) ?? throw new ArgumentNullException(nameof(content));
-                File.WriteAllText(file, content);
+                using (Stream stream = File.Open(file, FileMode.Create))
+                {
+                    new System.Xml.Serialization.XmlSerializer(typeof(T)).Serialize(stream, value);
+                }
                 return true;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }

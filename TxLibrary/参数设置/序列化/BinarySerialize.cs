@@ -6,18 +6,20 @@
  * History:			
  * <Date>			<Author>	<Description>
  * 2020年10月22日   landy       实现Save/Load方法
+ * 2020年10月23日   landy       重命名为BinarySerialize，原命名为BinarySerializeMemory
  **********************************************************************/
 
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace TxLibrary.Config.Memory
+namespace TxLibrary.Config.Serialize
 {
     /// <summary>
     /// 二进制序列化存储
+    /// 注意：此序列化方法需要被序列化类显示声明SerializableAttribute
     /// </summary>
-    public class BinarySerializeMemory<T> : IMemory<T>
+    public class BinarySerialize<T> : ISerialize<T>
     {
         /// <summary>
         /// 加载参数
