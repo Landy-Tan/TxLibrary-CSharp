@@ -6,9 +6,11 @@
  * History
  * <Date>           <Author>    <Description>
  * 2020年09月20日   Landy        创建
+ * 2021年4月13日    Landy        新增线程状态、等待方法
  */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 namespace TxLibrary.Threads
@@ -35,6 +37,16 @@ namespace TxLibrary.Threads
         protected Action actTask { get; set; }
 
         /// <summary>
+        /// 带参数的任务
+        /// </summary>
+        protected Action<object> actTask1 { get; set; }
+
+        /// <summary>
+        /// 任务参数
+        /// </summary>
+        protected object parameter { get; set; }
+
+        /// <summary>
         /// 创建一个Action任务
         /// </summary>
         /// <param name="task"></param>
@@ -44,19 +56,64 @@ namespace TxLibrary.Threads
         }
 
         /// <summary>
+        /// 创建一个Action任务
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="param"></param>
+        public TxCommandTask(Action<object> task, object param)
+        {
+            actTask1 = task;
+            parameter = param;
+        }
+
+        /// <summary>
         /// 任务过程
         /// </summary>
         public void Run()
         {
-            actTask?.Invoke();
+            if (actTask != null)
+                actTask();
+            else if (actTask1 != null)
+                actTask1(parameter);
         }
     }
 
     /// <summary>
     /// 多任务线程池
     /// </summary>
-    public class TxTaskThreads
+    public class TxTaskThreads : IDisposable
     {
+        /// <summary>
+        /// 线程状态
+        /// </summary>
+        protected enum EThreadStatus
+        {
+            /// <summary>
+            /// 初始化
+            /// </summary>
+            Initialize,
+
+            /// <summary>
+            /// 运行中
+            /// </summary>
+            Runing,
+
+            /// <summary>
+            /// 等待任务
+            /// </summary>
+            WaitTask
+        }
+
+        /// <summary>
+        /// 线程状态更改锁
+        /// </summary>
+        object objThreadStatusChangedLock = null;
+
+        /// <summary>
+        /// 存储线程状态信息
+        /// </summary>
+        protected Dictionary<Thread, EThreadStatus> dictThreadStatus = null;
+
         /// <summary>
         /// 线程数量
         /// </summary>
@@ -83,12 +140,25 @@ namespace TxLibrary.Threads
         protected Queue<TxICommandTask> Tasks = null;
 
         /// <summary>
+        /// 线程数量
+        /// </summary>
+        public int ThreadCount => nThreadNumber;
+
+        /// <summary>
+        /// 任务数量
+        /// </summary>
+        public int TaskCount => Tasks.Count;
+
+
+        /// <summary>
         /// 创建线程池
         /// </summary>
         public TxTaskThreads()
         {
+            objThreadStatusChangedLock = new object();
             mtxTasks = new Mutex();
             Tasks = new Queue<TxICommandTask>();
+            dictThreadStatus = new Dictionary<Thread, EThreadStatus>();
         }
 
         /// <summary>
@@ -125,6 +195,7 @@ namespace TxLibrary.Threads
                 }
                 Threads = null;
             }
+            dictThreadStatus.Clear();
             return true;
         }
 
@@ -150,20 +221,87 @@ namespace TxLibrary.Threads
         }
 
         /// <summary>
+        /// 等待所有任务执行完毕
+        /// </summary>
+        /// <param name="timeout">超时时间, 0：一直等待</param>
+        /// <returns>超时返回false；成功返回true</returns>
+        public bool WaitAllTasks(int timeout)
+        {
+            //Thread.Sleep(20);// 等待10ms,确保所有线程都有执行
+            Stopwatch watch = Stopwatch.StartNew();
+            bool runing = true;
+            while (runing || TaskCount > 0)
+            {
+                try
+                {
+                    runing = false;
+                    foreach (var status in dictThreadStatus.Values)
+                    {
+                        if (status == EThreadStatus.Runing)
+                        {
+                            runing = true;
+                            break;
+                        }
+                    }
+
+                    if (runing)
+                    {
+                        if (timeout != 0
+                            && watch.ElapsedMilliseconds > timeout)
+                            return false;
+                        Thread.Sleep(100);
+                    }
+                }
+                catch
+                {
+                    runing = true;
+                }
+            }
+            return true;
+        }
+
+
+        /// <summary>
         /// 线程池执行过程
         /// </summary>
         protected void Process()
         {
-            while(!bAbort)
+            TxICommandTask task = null;
+            while (!bAbort)
             {
-                TxICommandTask task = null;
-                while (Tasks.Count <= 0) Thread.Sleep(20);
+                task = null;
+                while (Tasks.Count <= 0)
+                {
+                    SetThreadStatus(Thread.CurrentThread, EThreadStatus.WaitTask);
+                    Thread.Sleep(20);
+                }
+                SetThreadStatus(Thread.CurrentThread, EThreadStatus.Runing);
+
                 mtxTasks.WaitOne();
                 try { task = Tasks.Dequeue(); } catch { }
                 mtxTasks.ReleaseMutex();
                 task?.Run();
-                Thread.Sleep(10);
             }
+        }
+
+        /// <summary>
+        /// 设置线程状态
+        /// </summary>
+        /// <param name="thread"></param>
+        /// <param name="status"></param>
+        protected void SetThreadStatus(Thread thread, EThreadStatus status)
+        {
+            if (dictThreadStatus.ContainsKey(thread)
+                && dictThreadStatus[thread] == status) return;
+            lock(objThreadStatusChangedLock)
+            {
+                dictThreadStatus[thread] = status;
+            }
+        }
+
+        public void Dispose()
+        {
+            Uninit();
         }
     }
 }
