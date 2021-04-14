@@ -4,6 +4,59 @@
         <name>TxLibrary</name>
     </assembly>
     <members>
+        <member name="T:TxLibrary.IO.TxDirectory">
+            <summary>
+            文件夹操作类
+            </summary>
+        </member>
+        <member name="M:TxLibrary.IO.TxDirectory.CopyDirectory(System.String,System.String)">
+            <summary>
+            拷贝文件夹
+            </summary>
+            <param name="source"></param>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.IO.TxFile">
+            <summary>
+            文件操作类
+            </summary>
+        </member>
+        <member name="M:TxLibrary.IO.TxFile.GetFileName(System.String)">
+            <summary>
+            通过路径获取文件名称
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.IO.TxFile.GetFilePath(System.String)">
+            <summary>
+            获取文件路径
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.IO.TxZip">
+            <summary>
+            文件压缩类
+            </summary>
+        </member>
+        <member name="M:TxLibrary.IO.TxZip.Zip(System.String,System.String)">
+            <summary>
+            压缩
+            </summary>
+            <param name="path"></param>
+            <param name="zipPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.IO.TxZip.UnZip(System.String,System.String)">
+            <summary>
+            解压缩
+            </summary>
+            <param name="zipPath"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
         <member name="T:TxLibrary.Log.CLog">
             <summary>
             CLog.xaml 的交互逻辑
@@ -187,6 +240,80 @@
         <member name="M:TxLibrary.Log.CLog.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:TxLibrary.WPF.TxDelegateCommand">
+            <summary>
+            委托命令
+            </summary>
+        </member>
+        <member name="T:TxLibrary.WPF.Interface.TxIProperty">
+            <summary>
+            属性接口
+            任何拥有属性的类都建议实现该接口
+            </summary>
+        </member>
+        <member name="M:TxLibrary.WPF.Interface.TxIProperty.NotifyPropertyChanged(System.String)">
+            <summary>
+            通知属性的值发生了更改
+            </summary>
+            <param name="property">属性名称</param>
+        </member>
+        <member name="M:TxLibrary.WPF.Interface.TxIProperty.SetField``1(``0@,``0,System.String)">
+            <summary>
+            设置字段的值并通知属性的值发生了更改
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="target"></param>
+            <param name="value"></param>
+            <param name="notifyPropertyChanged"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.WPF.Interface.TxIProperty.GetField``1(``0@)">
+            <summary>
+            获取字段的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TxLibrary.WPF.TxPropertyBase">
+            <summary>
+            抽象属性接口
+            </summary>
+        </member>
+        <member name="E:TxLibrary.WPF.TxPropertyBase.PropertyChanged">
+            <summary>
+            通知属性更改事件
+            </summary>
+        </member>
+        <member name="M:TxLibrary.WPF.TxPropertyBase.NotifyPropertyChanged(System.String)">
+            <summary>
+            通知属性的值发生了更改
+            </summary>
+            <param name="property">属性的名称</param>
+        </member>
+        <member name="M:TxLibrary.WPF.TxPropertyBase.SetField``1(``0@,``0,System.String)">
+            <summary>
+            设置字段的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="target"></param>
+            <param name="value"></param>
+            <param name="notifyPropertyChanged"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.WPF.TxPropertyBase.GetField``1(``0@)">
+            <summary>
+            获取字段的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TxLibrary.WPF.TxPropertyBase.Dispose">
+            <summary>
+            退出清理
             </summary>
         </member>
         <member name="T:TxLibrary.Config.Page.ButtonPage">
@@ -484,59 +611,6 @@
             </summary>
             <param name="file"></param>
             <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="T:TxLibrary.IO.TxDirectory">
-            <summary>
-            文件夹操作类
-            </summary>
-        </member>
-        <member name="M:TxLibrary.IO.TxDirectory.CopyDirectory(System.String,System.String)">
-            <summary>
-            拷贝文件夹
-            </summary>
-            <param name="source"></param>
-            <param name="target"></param>
-            <returns></returns>
-        </member>
-        <member name="T:TxLibrary.IO.TxFile">
-            <summary>
-            文件操作类
-            </summary>
-        </member>
-        <member name="M:TxLibrary.IO.TxFile.GetFileName(System.String)">
-            <summary>
-            通过路径获取文件名称
-            </summary>
-            <param name="path"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TxLibrary.IO.TxFile.GetFilePath(System.String)">
-            <summary>
-            获取文件路径
-            </summary>
-            <param name="file"></param>
-            <returns></returns>
-        </member>
-        <member name="T:TxLibrary.IO.TxZip">
-            <summary>
-            文件压缩类
-            </summary>
-        </member>
-        <member name="M:TxLibrary.IO.TxZip.Zip(System.String,System.String)">
-            <summary>
-            压缩
-            </summary>
-            <param name="path"></param>
-            <param name="zipPath"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TxLibrary.IO.TxZip.UnZip(System.String,System.String)">
-            <summary>
-            解压缩
-            </summary>
-            <param name="zipPath"></param>
-            <param name="path"></param>
             <returns></returns>
         </member>
         <member name="T:TxLibrary.DesignMode.Single`1">
@@ -855,36 +929,6 @@
         <member name="F:TxLibrary.Notification.TxNotification.Notification.Close">
             <summary>
             关闭
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

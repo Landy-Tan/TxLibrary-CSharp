@@ -1,0 +1,23 @@
+﻿<Window x:Class="testPropertyChanged.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:testPropertyChanged"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:MainWindowViewModule/>
+    </Window.DataContext>
+
+    <Grid>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="163,155,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="210,157,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="393"/>
+        <Label Content="Age:" HorizontalAlignment="Left" Margin="163,183,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="210,185,0,0" TextWrapping="Wrap" Text="{Binding Age}" VerticalAlignment="Top" Width="393"/>
+        <Button Content="随机更改" HorizontalAlignment="Left" Margin="210,213,0,0" VerticalAlignment="Top" Width="75" Command="{Binding RandomUpdateCommand}"/>
+        <Button Content="显示" HorizontalAlignment="Left" Margin="528,213,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ShowCommand}"/>
+
+    </Grid>
+</Window>
