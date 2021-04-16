@@ -76,7 +76,6 @@
     <Compile Include="参数设置\序列化\XmlSerialize.cs" />
     <Compile Include="设计模式\Single.cs" />
     <Compile Include="数据结构\树形结构\TxTree.cs" />
-    <Compile Include="线程\TxTaskThreads.cs" />
     <Compile Include="通知机制\TxNotification.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +91,9 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="线程\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

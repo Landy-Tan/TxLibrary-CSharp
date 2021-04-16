@@ -6,8 +6,10 @@
  * History
  * <Date>           <Author>    <Description>
  * 2021年4月13日    Landy        创建
+ * 2021年4月16日    Landy        新增GetAllDirectoryAndFiles方法
  */
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace TxLibrary.IO
@@ -43,6 +45,21 @@ namespace TxLibrary.IO
                 File.Copy(sourceFile, targetFile);
             }
             return true;
+        }
+
+        /// <summary>
+        /// 获取指定路径下的所有文件夹和文件名称
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string[] GetAllDirectoryAndFiles(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path)) throw new ArgumentNullException(nameof(path));
+            if (!Directory.Exists(path)) throw new DirectoryNotFoundException(path);
+            List<string> systemInfos = new List<string>();
+            systemInfos.AddRange(Directory.GetDirectories(path, "*", SearchOption.AllDirectories));
+            systemInfos.AddRange(Directory.GetFiles(path, "*", SearchOption.AllDirectories));
+            return systemInfos.ToArray();
         }
     }
 }

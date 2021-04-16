@@ -6,15 +6,13 @@
  * History
  * <Date>           <Author>    <Description>
  * 2021年4月13日    Landy        创建
+ * 2021年4月16日    Landy        适配WinRAR-ZIP
  */
 using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using TxLibrary.Threads;
 
 namespace TxLibrary.IO
 {
@@ -53,32 +51,38 @@ namespace TxLibrary.IO
             {
                 ZipOutputStream output = new ZipOutputStream(stream);
 
-                TxTaskThreads threads = new TxTaskThreads();
-                threads.Init(files.Length > 8 ? 8 : files.Length);
+                List<Task> tasks = new List<Task>();
 
-                foreach (string file in files)
+                foreach (string _file in files)
                 {
-                    threads.AppendTask(new TxCommandTask((o) => {
-                        string f = o as string;
-                        string a = string.Empty;
+                    var task = new Task((o) => {
+                        string file = o as string;
+                        string name = string.Empty;
                         if (isPathIsFile)
-                            a = TxFile.GetFileName(f);
+                            name = TxFile.GetFileName(file);
                         else
-                            f.Replace(path + "\\", "");
-                        ZipEntry entry = new ZipEntry(a);
-                        byte[] content = File.ReadAllBytes(f);
+                            name = file.Replace(path + "\\", "").Replace("\\", "/");
+
+                        byte[] data = null;
+                        ZipEntry entry = new ZipEntry(name);
+                        var info = new FileInfo(file);
+                        entry.DateTime = info.LastWriteTime;
+                        data = File.ReadAllBytes(file);
+                        
                         lock(objLock)
                         {
                             output.PutNextEntry(entry);
-                            output.Write(content, 0, content.Length);
+                            if (data != null)
+                                output.Write(data, 0, data.Length);
                         }
-                    }, file));
+                    }, _file);
+                    task.Start();
+                    tasks.Add(task);
                 }
 
-                threads.WaitAllTasks(0);
+                Task.WaitAll(tasks.ToArray());
                 output.Finish();
                 output.Close();
-                threads.Uninit();
             }
 
             return true;
@@ -87,8 +91,8 @@ namespace TxLibrary.IO
         /// <summary>
         /// 解压缩
         /// </summary>
-        /// <param name="zipPath"></param>
-        /// <param name="path"></param>
+        /// <param name="zipPath">压缩包路径</param>
+        /// <param name="path">解压缩路径</param>
         /// <returns></returns>
         public static bool UnZip(string zipPath, string path)
         {
@@ -101,37 +105,53 @@ namespace TxLibrary.IO
             using (Stream stream = new FileStream(zipPath, FileMode.Open, FileAccess.Read))
             {
                 ZipInputStream input = new ZipInputStream(stream);
-
-                TxTaskThreads threads = new TxTaskThreads();
-                threads.Init(4);
-
+                List<Task> tasks = new List<Task>();
                 ZipEntry entry = null;
                 do
                 {
                     entry = input.GetNextEntry();
                     if (entry is null) break;
-                    byte[] content = new byte[entry.Size];
-                    input.Read(content, 0, content.Length);
-                    threads.AppendTask(new TxCommandTask((o) =>
-                    {
-                        var param = o as object[];
-                        string fileName = param[0] as string;
-                        byte[] data = param[1] as byte[];
+                    if (entry.IsDirectory)
+                    {// 文件夹
+                        string tempPath = Path.Combine(path, entry.Name.Replace("/", "\\"));
+                        var info = new DirectoryInfo(tempPath);
+                        if (!info.Exists)
+                            info.Create();
+                        info.LastWriteTime = entry.DateTime;
+                    }
+                    else if (entry.IsFile)
+                    {// 文件
+                        byte[] content = new byte[entry.Size];
+                        input.Read(content, 0, content.Length);
 
-                        string filePath = TxFile.GetFilePath(fileName);
-                        if (!string.IsNullOrWhiteSpace(filePath)
-                        && !Directory.Exists(Path.Combine(path, filePath)))
-                            Directory.CreateDirectory(Path.Combine(path, filePath));
+                        var task = new Task((o) =>
+                        {
+                            var _ = (Tuple<ZipEntry, byte[]>) o;
+                            var param = (entry: _.Item1, content: _.Item2);
+                            string name = param.entry.Name.Replace("/", "\\");
+                            // 如果路径不存在，创建路径
+                            string filePath = TxFile.GetFilePath(name);
+                            if (!string.IsNullOrWhiteSpace(filePath)
+                            && !Directory.Exists(Path.Combine(path, filePath)))
+                                Directory.CreateDirectory(Path.Combine(path, filePath));
 
-                        string fullPath = Path.Combine(path, fileName);
-                        var fi = File.Create(fullPath);
-                        fi.Write(data, 0, data.Length);
-                        fi.Close();
-                    }, new object[] { entry.Name, content }));
+                            // 写文件
+                            string fullPath = Path.Combine(path, name);
+                            var fi = File.Create(fullPath);
+                            fi.Write(param.content, 0, param.content.Length);
+                            fi.Close();
+                            FileInfo info = new FileInfo(fullPath);
+                            info.LastWriteTime = param.entry.DateTime;
+
+                        }, Tuple.Create(entry, content));
+                        task.Start();
+                        tasks.Add(task);
+                        
+                    }
                 } while (entry != null);
-
-                threads.WaitAllTasks(0);
+                
                 input.Close();
+                Task.WaitAll(tasks.ToArray());
             }
             return true;
         }

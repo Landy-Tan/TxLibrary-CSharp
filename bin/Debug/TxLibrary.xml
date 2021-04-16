@@ -17,6 +17,13 @@
             <param name="target"></param>
             <returns></returns>
         </member>
+        <member name="M:TxLibrary.IO.TxDirectory.GetAllDirectoryAndFiles(System.String)">
+            <summary>
+            获取指定路径下的所有文件夹和文件名称
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
         <member name="T:TxLibrary.IO.TxFile">
             <summary>
             文件操作类
@@ -53,8 +60,8 @@
             <summary>
             解压缩
             </summary>
-            <param name="zipPath"></param>
-            <param name="path"></param>
+            <param name="zipPath">压缩包路径</param>
+            <param name="path">解压缩路径</param>
             <returns></returns>
         </member>
         <member name="T:TxLibrary.Log.CLog">
@@ -713,168 +720,6 @@
             <param name="tree"></param>
             <returns></returns>
         </member>
-        <member name="T:TxLibrary.Threads.TxICommandTask">
-            <summary>
-            任务接口
-            </summary>
-        </member>
-        <member name="M:TxLibrary.Threads.TxICommandTask.Run">
-            <summary>
-            任务处理过程
-            </summary>
-        </member>
-        <member name="T:TxLibrary.Threads.TxCommandTask">
-            <summary>
-            通用任务
-            </summary>
-        </member>
-        <member name="P:TxLibrary.Threads.TxCommandTask.actTask">
-            <summary>
-            任务
-            </summary>
-        </member>
-        <member name="P:TxLibrary.Threads.TxCommandTask.actTask1">
-            <summary>
-            带参数的任务
-            </summary>
-        </member>
-        <member name="P:TxLibrary.Threads.TxCommandTask.parameter">
-            <summary>
-            任务参数
-            </summary>
-        </member>
-        <member name="M:TxLibrary.Threads.TxCommandTask.#ctor(System.Action)">
-            <summary>
-            创建一个Action任务
-            </summary>
-            <param name="task"></param>
-        </member>
-        <member name="M:TxLibrary.Threads.TxCommandTask.#ctor(System.Action{System.Object},System.Object)">
-            <summary>
-            创建一个Action任务
-            </summary>
-            <param name="task"></param>
-            <param name="param"></param>
-        </member>
-        <member name="M:TxLibrary.Threads.TxCommandTask.Run">
-            <summary>
-            任务过程
-            </summary>
-        </member>
-        <member name="T:TxLibrary.Threads.TxTaskThreads">
-            <summary>
-            多任务线程池
-            </summary>
-        </member>
-        <member name="T:TxLibrary.Threads.TxTaskThreads.EThreadStatus">
-            <summary>
-            线程状态
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.EThreadStatus.Initialize">
-            <summary>
-            初始化
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.EThreadStatus.Runing">
-            <summary>
-            运行中
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.EThreadStatus.WaitTask">
-            <summary>
-            等待任务
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.objThreadStatusChangedLock">
-            <summary>
-            线程状态更改锁
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.dictThreadStatus">
-            <summary>
-            存储线程状态信息
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.nThreadNumber">
-            <summary>
-            线程数量
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.Threads">
-            <summary>
-            线程
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.bAbort">
-            <summary>
-            停止线程
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.mtxTasks">
-            <summary>
-            任务锁
-            </summary>
-        </member>
-        <member name="F:TxLibrary.Threads.TxTaskThreads.Tasks">
-            <summary>
-            任务集合
-            </summary>
-        </member>
-        <member name="P:TxLibrary.Threads.TxTaskThreads.ThreadCount">
-            <summary>
-            线程数量
-            </summary>
-        </member>
-        <member name="P:TxLibrary.Threads.TxTaskThreads.TaskCount">
-            <summary>
-            任务数量
-            </summary>
-        </member>
-        <member name="M:TxLibrary.Threads.TxTaskThreads.#ctor">
-            <summary>
-            创建线程池
-            </summary>
-        </member>
-        <member name="M:TxLibrary.Threads.TxTaskThreads.Init(System.Int32)">
-            <summary>
-            初始化
-            </summary>
-            <param name="threadNumber">线程数量</param>
-            <returns></returns>
-        </member>
-        <member name="M:TxLibrary.Threads.TxTaskThreads.Uninit">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:TxLibrary.Threads.TxTaskThreads.AppendTask(TxLibrary.Threads.TxICommandTask)">
-            <summary>
-            添加一个任务
-            </summary>
-            <param name="task"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TxLibrary.Threads.TxTaskThreads.WaitAllTasks(System.Int32)">
-            <summary>
-            等待所有任务执行完毕
-            </summary>
-            <param name="timeout">超时时间, 0：一直等待</param>
-            <returns>超时返回false；成功返回true</returns>
-        </member>
-        <member name="M:TxLibrary.Threads.TxTaskThreads.Process">
-            <summary>
-            线程池执行过程
-            </summary>
-        </member>
-        <member name="M:TxLibrary.Threads.TxTaskThreads.SetThreadStatus(System.Threading.Thread,TxLibrary.Threads.TxTaskThreads.EThreadStatus)">
-            <summary>
-            设置线程状态
-            </summary>
-            <param name="thread"></param>
-            <param name="status"></param>
-        </member>
         <member name="T:TxLibrary.Notification.NotificationHandler">
             <summary>
             通知
@@ -929,6 +774,36 @@
         <member name="F:TxLibrary.Notification.TxNotification.Notification.Close">
             <summary>
             关闭
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>
