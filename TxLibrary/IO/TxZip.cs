@@ -127,8 +127,10 @@ namespace TxLibrary.IO
                         var task = new Task((o) =>
                         {
                             var _ = (Tuple<ZipEntry, byte[]>) o;
-                            var param = (entry: _.Item1, content: _.Item2);
-                            string name = param.entry.Name.Replace("/", "\\");
+                            //var param = (entry: _.Item1, content: _.Item2);
+                            var _entry = _.Item1;
+                            var _content = _.Item2;
+                            string name = _entry.Name.Replace("/", "\\");
                             // 如果路径不存在，创建路径
                             string filePath = TxFile.GetFilePath(name);
                             if (!string.IsNullOrWhiteSpace(filePath)
@@ -138,10 +140,10 @@ namespace TxLibrary.IO
                             // 写文件
                             string fullPath = Path.Combine(path, name);
                             var fi = File.Create(fullPath);
-                            fi.Write(param.content, 0, param.content.Length);
+                            fi.Write(_content, 0, _content.Length);
                             fi.Close();
                             FileInfo info = new FileInfo(fullPath);
-                            info.LastWriteTime = param.entry.DateTime;
+                            info.LastWriteTime = _entry.DateTime;
 
                         }, Tuple.Create(entry, content));
                         task.Start();
